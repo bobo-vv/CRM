@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: crm-fresh
+    env: node
+    plan: starter
+    buildCommand: "npm install"
+    startCommand: "node server.js"
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /data
+      - key: JWT_SECRET
+        value: change-me
+      - key: ADMIN_EMAIL
+        value: admin@example.com
+      - key: ADMIN_PASSWORD
+        value: admin123
+    disk:
+      name: crm-data
+      mountPath: /data
+      sizeGB: 5
+    healthCheckPath: /health
